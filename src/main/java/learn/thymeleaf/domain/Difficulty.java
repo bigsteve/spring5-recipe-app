@@ -1,4 +1,4 @@
-package learn.thymeleaf.entities;
+package learn.thymeleaf.domain;
 
 public enum Difficulty {
     
