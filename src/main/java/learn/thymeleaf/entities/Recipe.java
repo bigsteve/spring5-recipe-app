@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,23 +20,24 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descripton;
-    private Integer prepTimeInteger;
-    private Integer cookTimeInteger;
-    private Integer servingsInteger;
+    private Integer prepTime;
+    private Integer cookTime;
+    private Integer servings;
     private String source;
     private String url;
     private String directions;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Ingredient> ngredient;
+    private Set<Ingredient> ingredient;
 
     @Lob
     private Byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Notes notes;
-    // TODO: add
-    // private Difficulty difficulty;
+
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
 
     public String getDescripton() {
         return descripton;
@@ -44,28 +47,28 @@ public class Recipe {
         this.descripton = descripton;
     }
 
-    public Integer getPrepTimeInteger() {
-        return prepTimeInteger;
+    public Integer getPrepTime() {
+        return prepTime;
     }
 
-    public void setPrepTimeInteger(Integer prepTimeInteger) {
-        this.prepTimeInteger = prepTimeInteger;
+    public void setPrepTime(Integer prepTime) {
+        this.prepTime = prepTime;
     }
 
-    public Integer getCookTimeInteger() {
-        return cookTimeInteger;
+    public Integer getCookTime() {
+        return cookTime;
     }
 
-    public void setCookTimeInteger(Integer cookTimeInteger) {
-        this.cookTimeInteger = cookTimeInteger;
+    public void setCookTime(Integer cookTime) {
+        this.cookTime = cookTime;
     }
 
-    public Integer getServingsInteger() {
-        return servingsInteger;
+    public Integer getServings() {
+        return servings;
     }
 
-    public void setServingsInteger(Integer servingsInteger) {
-        this.servingsInteger = servingsInteger;
+    public void setServings(Integer servings) {
+        this.servings = servings;
     }
 
     public String getSource() {
@@ -106,6 +109,30 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Ingredient> getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Set<Ingredient> ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
 }
