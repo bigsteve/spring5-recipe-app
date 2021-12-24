@@ -10,6 +10,7 @@ public class Spring5RecipeAppApplicationTests {
 
 //	@Test
 //	public void contextLoads() {
+//	    Assert.assertEquals(0, 0);
 //	}
 
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import learn.thymeleaf.domain.Recipe;
 
 @Repository
-public interface RecipeReporitory extends CrudRepository<Recipe, Long> {
+public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
 }
