@@ -1,5 +1,3 @@
-/**
-
 
 package learn.thymeleaf.bootstrap;
 
