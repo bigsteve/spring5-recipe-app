@@ -1,7 +1,7 @@
 package learn.thymeleaf.controllers;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,29 +13,32 @@ import learn.thymeleaf.domain.Recipe;
 import learn.thymeleaf.domain.UnitOfMeasure;
 import learn.thymeleaf.repo.CategoryRepository;
 import learn.thymeleaf.repo.UnitOfMeasureRepository;
-import learn.thymeleaf.service.RecipeService;
+import learn.thymeleaf.service.RecipeServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
  * @author stefan
  *
  */
+@Slf4j
 @Controller
 public class IndexController {
 
     private CategoryRepository categoryRepository;
     private UnitOfMeasureRepository unitOfMeasureRepository;
     @Autowired
-    private RecipeService recipeService;
+    private RecipeServiceImpl recipeServiceImpl;
 
     public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
         this.categoryRepository = categoryRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+        log.debug("IndexController in action...");
     }
 
     @RequestMapping({ "", "/", "/index" })
     public String getIndexPage(Model model) {
-        List<Recipe> recipes = recipeService.findAll();
+        Set<Recipe> recipes = recipeServiceImpl.getRecipes();
         model.addAttribute("recipes", recipes);
 
         Optional<Category> categoryOptional = categoryRepository.findByDescription("Italian");

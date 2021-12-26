@@ -23,17 +23,35 @@ SOFTWARE.
 */
 package learn.thymeleaf.service;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import learn.thymeleaf.domain.Recipe;
+import learn.thymeleaf.repo.RecipeRepository;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author stefan
  *
  */
-public interface RecipeService {
+@Slf4j
+@Service
+public class RecipeServiceImpl implements RecipeService {
 
-    
-    public Set<Recipe> getRecipes();
-    
+    private final RecipeRepository recipeRepository;
+
+    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
+    }
+
+    @Override
+    public Set<Recipe> getRecipes() {
+        log.debug("I'm in the service");
+
+        Set<Recipe> recipeSet = new HashSet<>();
+        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
+        return recipeSet;
+    }
 }
