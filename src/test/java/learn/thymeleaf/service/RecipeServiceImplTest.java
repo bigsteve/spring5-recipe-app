@@ -23,35 +23,56 @@ SOFTWARE.
 */
 package learn.thymeleaf.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.stereotype.Service;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import learn.thymeleaf.domain.Recipe;
 import learn.thymeleaf.repositories.RecipeRepository;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author stefan
  *
  */
-@Slf4j
-@Service
-public class RecipeServiceImpl implements RecipeService {
+public class RecipeServiceImplTest {
+    
+    
+    RecipeServiceImpl recipeServiceImpl;
+    
+    @Mock
+    RecipeRepository recipeRepository;
 
-    private final RecipeRepository recipeRepository;
-
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+        recipeServiceImpl = new RecipeServiceImpl(recipeRepository);
     }
 
-    @Override
-    public Set<Recipe> getRecipes() {
-        log.debug("I'm in the service");
-
-        Set<Recipe> recipeSet = new HashSet<>();
-        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
-        return recipeSet;
+    /**
+     * Test method for {@link learn.thymeleaf.service.RecipeServiceImpl#getRecipes()}.
+     */
+    @Test
+    public void testGetRecipes() {
+        Recipe recipe = new Recipe();
+        HashSet<Recipe> recipesData = new HashSet<Recipe>();
+        recipesData.add(recipe);
+        
+        when(recipeRepository.findAll()).thenReturn(recipesData);
+        Set<Recipe> recipes = recipeServiceImpl.getRecipes();
+        assertEquals(recipes.size(), 1);
+        verify(recipeRepository, times(1)).findAll();
     }
+
 }

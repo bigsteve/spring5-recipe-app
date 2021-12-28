@@ -1,4 +1,4 @@
-package learn.thymeleaf.repo;
+package learn.thymeleaf.repositories;
 
 import java.util.Optional;
 
