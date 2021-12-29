@@ -18,7 +18,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7-1/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+	crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
 
@@ -46,21 +46,25 @@
 									<td th:text="${recipe.id}">123</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
+                                    <td><a href="#" th:href="@{'/recipe/show/'+${recipe.id}}">View</a></td>
 								</tr>
 								<tr th:remove="all">
 									<td th:text="${recipe.id}">123</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
+                                    <td><a href="#" th:href="@{'/recipe/show/'+${recipe.id}}">View</a></td>
 								</tr>
 								<tr th:remove="all">
 									<td th:text="${recipe.id}">123</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
+                                    <td><a href="#" th:href="@{'/recipe/show/'+${recipe.id}}">View</a></td>
 								</tr>
 								<tr th:each="r: ${recipes}">
 									<td th:text="${r.id}" />
 									<td th:text="${r.description}" />
 									<td th:text="${r.directions}" />
+									<td><a href="#" th:href="@{'/recipe/show/'+${r.id}}">View</a></td>
 								</tr>
 							</table>
 						</div>
