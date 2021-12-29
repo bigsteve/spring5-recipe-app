@@ -80,7 +80,7 @@
                                 <h5>URL:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>http://www.example.com</p>
+                                <p th:text="${recipe.url}">http://www.example.com</p>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <ul th:each="i: ${recipe.ingredients}">
-                                    <li th:text="${i.description}">cat one</li>
+                                    <li th:text="${i.getAmount()} +' '+ ${i.getUom().getDescription()} +' '+ ${i.description}">cat one</li>
                                 </ul>
                                 <ul th:remove="all">
                                     <li>1 Teaspoon of sugar</li>
