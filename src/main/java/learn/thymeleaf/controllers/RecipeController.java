@@ -28,6 +28,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import learn.thymeleaf.domain.Recipe;
 import learn.thymeleaf.service.RecipeService;
 
 /**
@@ -45,7 +46,8 @@ public class RecipeController {
 
     @RequestMapping("/recipe/show/{id}")
     public String showById(@PathVariable String id, Model model){
-        model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
+        Recipe r = recipeService.findById(Long.valueOf(id));
+        model.addAttribute("recipe", r);
         return "recipe/show";
     }
 }
