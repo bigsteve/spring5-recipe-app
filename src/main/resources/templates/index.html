@@ -38,7 +38,9 @@
 									<tr>
 										<th>ID</th>
 										<th>Description</th>
-										<th>Directions</th>
+                                        <th>View</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
 									</tr>
 								</thead>
 
@@ -46,25 +48,24 @@
 									<td th:text="${recipe.id}">123</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
-                                    <td><a href="#" th:href="@{'/recipe/show/'+${recipe.id}}">View</a></td>
+                                    <td><a href="#" th:href="@{'/recipe/'+${r.id}+'/show/'}">View</a></td>
 								</tr>
 								<tr th:remove="all">
 									<td th:text="${recipe.id}">123</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
-									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
-                                    <td><a href="#" th:href="@{'/recipe/show/'+${recipe.id}}">View</a></td>
+                                    <td><a href="#" th:href="@{'/recipe/'+${r.id}+'/show/'}">View</a></td>
 								</tr>
 								<tr th:remove="all">
 									<td th:text="${recipe.id}">123</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
-									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
-                                    <td><a href="#" th:href="@{'/recipe/show/'+${recipe.id}}">View</a></td>
+                                    <td><a href="#" th:href="@{'/recipe/'+${r.id}+'/show/'}">View</a></td>
 								</tr>
 								<tr th:each="r: ${recipes}">
 									<td th:text="${r.id}" />
 									<td th:text="${r.description}" />
-									<td th:text="${r.directions}" />
-									<td><a href="#" th:href="@{'/recipe/show/'+${r.id}}">View</a></td>
+                                    <td><a href="#" th:href="@{'/recipe/'+${r.id}+'/show/'}">View</a></td>
+                                    <td><a href="#" th:href="@{'/recipe/'+${r.id}+'/update/'}">Update</a></td>
+                                    <td><a href="#" th:href="@{'/recipe/'+${r.id}+'/delete/'}">Delete</a></td>
 								</tr>
 							</table>
 						</div>

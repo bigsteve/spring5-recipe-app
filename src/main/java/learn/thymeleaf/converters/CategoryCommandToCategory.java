@@ -23,10 +23,32 @@ SOFTWARE.
 */
 package learn.thymeleaf.converters;
 
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
+
+import learn.thymeleaf.commands.CategoryCommand;
+import learn.thymeleaf.domain.Category;
+import lombok.Synchronized;
+
 /**
  * @author stefan
  *
  */
-public class CategoryCommandToCategory {
+@Component
+public class CategoryCommandToCategory implements Converter<CategoryCommand, Category>{
 
+    @Synchronized
+    @Nullable
+    @Override
+    public Category convert(CategoryCommand source) {
+        if (source == null) {
+            return null;
+        }
+
+        final Category category = new Category();
+        category.setId(source.getId());
+        category.setDescription(source.getDescription());
+        return category;
+    }
 }

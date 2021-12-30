@@ -27,8 +27,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import learn.thymeleaf.commands.CategoryCommand;
-import learn.thymeleaf.domain.Category;
+import learn.thymeleaf.commands.IngredientCommand;
+import learn.thymeleaf.domain.Ingredient;
 import lombok.Synchronized;
 
 /**
@@ -36,21 +36,27 @@ import lombok.Synchronized;
  *
  */
 @Component
-public class CategoryToCategoryCommand implements Converter<Category, CategoryCommand> {
+public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientCommand> {
+
+    private final UnitOfMeasureToUnitOfMeasureCommand uomConverter;
+
+    public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand uomConverter) {
+        this.uomConverter = uomConverter;
+    }
 
     @Synchronized
     @Nullable
     @Override
-    public CategoryCommand convert(Category source) {
-        if (source == null) {
+    public IngredientCommand convert(Ingredient ingredient) {
+        if (ingredient == null) {
             return null;
         }
 
-        final CategoryCommand categoryCommand = new CategoryCommand();
-
-        categoryCommand.setId(source.getId());
-        categoryCommand.setDescription(source.getDescription());
-
-        return categoryCommand;
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setId(ingredient.getId());
+        ingredientCommand.setAmount(ingredient.getAmount());
+        ingredientCommand.setDescription(ingredient.getDescription());
+        ingredientCommand.setUom(uomConverter.convert(ingredient.getUom()));
+        return ingredientCommand;
     }
 }

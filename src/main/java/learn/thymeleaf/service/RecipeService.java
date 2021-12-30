@@ -25,6 +25,7 @@ package learn.thymeleaf.service;
 
 import java.util.Set;
 
+import learn.thymeleaf.commands.RecipeCommand;
 import learn.thymeleaf.domain.Recipe;
 
 /**
@@ -32,12 +33,18 @@ import learn.thymeleaf.domain.Recipe;
  *
  */
 public interface RecipeService {
-
     
-    public Set<Recipe> getRecipes();
+    
+    Set<Recipe> getRecipes();
 
     Recipe findById(Long l);
     
-    public Set<Recipe> findAll();
+    void deleteCommandById(Long l);
+    
+    Set<Recipe> findAll();
+
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
+
+    RecipeCommand findCommandById(Long l);
     
 }
