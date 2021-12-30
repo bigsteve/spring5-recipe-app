@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 import learn.thymeleaf.domain.Recipe;
-import learn.thymeleaf.service.RecipeService;
+import learn.thymeleaf.services.RecipeService;
 
 /**
  * @author stefan

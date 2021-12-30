@@ -1,4 +1,4 @@
-package learn.thymeleaf.service;
+package learn.thymeleaf.services;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,6 +14,7 @@ import learn.thymeleaf.converters.RecipeCommandToRecipe;
 import learn.thymeleaf.converters.RecipeToRecipeCommand;
 import learn.thymeleaf.domain.Recipe;
 import learn.thymeleaf.repositories.RecipeRepository;
+import learn.thymeleaf.services.RecipeService;
 
 /**
  * @author stefan

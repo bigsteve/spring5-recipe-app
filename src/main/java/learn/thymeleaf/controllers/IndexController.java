@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import learn.thymeleaf.domain.Recipe;
-import learn.thymeleaf.service.RecipeService;
+import learn.thymeleaf.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 
 /**

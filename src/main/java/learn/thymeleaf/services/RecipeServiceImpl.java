@@ -1,4 +1,4 @@
-package learn.thymeleaf.service;
+package learn.thymeleaf.services;
 
 import java.util.HashSet;
 import java.util.Optional;

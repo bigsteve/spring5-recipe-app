@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import learn.thymeleaf.commands.RecipeCommand;
 import learn.thymeleaf.domain.Recipe;
-import learn.thymeleaf.service.RecipeService;
+import learn.thymeleaf.services.RecipeService;
 
 /**
  * @author stefan
