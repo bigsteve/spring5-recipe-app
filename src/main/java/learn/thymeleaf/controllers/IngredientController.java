@@ -34,7 +34,7 @@ public class IngredientController {
     }
 
     @GetMapping
-    @RequestMapping("/recipe/{recipeId}/ingredients")
+    @RequestMapping("/recipe/{recipeId}/ingredients/")
     public String listIngredients(@PathVariable String recipeId, Model model) {
         log.debug("Getting ingredient list for recipe id: " + recipeId);
 
@@ -45,7 +45,7 @@ public class IngredientController {
     }
 
     @GetMapping
-    @RequestMapping("recipe/{recipeId}/ingredient/{id}/show")
+    @RequestMapping("recipe/{recipeId}/ingredient/{id}/show/")
     public String showRecipeIngredient(@PathVariable String recipeId, @PathVariable String id, Model model) {
         model.addAttribute("ingredient",
                 ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
@@ -53,7 +53,7 @@ public class IngredientController {
     }
 
     @GetMapping
-    @RequestMapping("recipe/{recipeId}/ingredient/{id}/update")
+    @RequestMapping("recipe/{recipeId}/ingredient/{id}/update/")
     public String updateRecipeIngredient(@PathVariable String recipeId, @PathVariable String id, Model model) {
         model.addAttribute("ingredient",
                 ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
@@ -62,13 +62,13 @@ public class IngredientController {
         return "recipe/ingredient/ingredientform";
     }
 
-    @PostMapping("recipe/{recipeId}/ingredient")
+    @PostMapping("recipe/{recipeId}/ingredient/")
     public String saveOrUpdate(@ModelAttribute IngredientCommand command){
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 
         log.debug("saved receipe id:" + savedCommand.getRecipeId());
         log.debug("saved ingredient id:" + savedCommand.getId());
 
-        return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+        return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show/";
     }
 }
