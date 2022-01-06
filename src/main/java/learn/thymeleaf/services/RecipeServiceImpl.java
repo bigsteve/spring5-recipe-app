@@ -12,6 +12,7 @@ import learn.thymeleaf.commands.RecipeCommand;
 import learn.thymeleaf.converters.RecipeCommandToRecipe;
 import learn.thymeleaf.converters.RecipeToRecipeCommand;
 import learn.thymeleaf.domain.Recipe;
+import learn.thymeleaf.exceptions.NotFoundException;
 import learn.thymeleaf.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,7 +50,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe with id "+l.toString()+" not found.");
         }
 
         return recipeOptional.get();

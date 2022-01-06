@@ -32,6 +32,10 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<h1 class="panel-title">Edit Recipe Information</h1>
+
+								<div class="col-md-1 button-block-float-right">
+									<a class="btn btn-default" href="/" role="button">Home</a>
+								</div>
 							</div>
 							<div class="panel-body">
 								<div class="row">
@@ -90,18 +94,20 @@
 								</div>
 							</div>
 						</div>
+                            <th:block th:if="*{id}">
 						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-md-11 ">
-										<h1 class="panel-title">Ingredients</h1>
-									</div>
-									<div class="col-md-1 button-block-float-right">
-										<a class="btn btn-default" href="#"
-											th:href="@{'/recipe/'+*{id}+'/ingredients/'}" role="button">View</a>
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-md-11 ">
+											<h1 class="panel-title">Ingredients</h1>
+										</div>
+										<div class="col-md-1 button-block-float-right">
+											<a class="btn btn-default" href="#"
+												th:href="@{'/recipe/'+*{id}+'/ingredients/'}" role="button">View</a>
+										</div>
 									</div>
 								</div>
-							</div>
+								
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-md-12">
@@ -119,6 +125,7 @@
 								</div>
 							</div>
 						</div>
+						</th:block>
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<h1 class="panel-title">Directions</h1>

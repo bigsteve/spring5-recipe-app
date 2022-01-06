@@ -26,7 +26,10 @@
 						<div class="panel-heading">
 							<h1 class="panel-title" th:text="${recipe.description}">Recipe
 								Description Here!</h1>
-
+                            <div class="col-md-1 button-block-float-right">
+                                <a class="btn btn-default" href="#"
+                                    th:href="@{'/recipe/'+*{id}+'/image/'}" role="button">Image</a>
+                            </div>
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -43,6 +46,12 @@
 										<li>cat three</li>
 									</ul>
 								</div>
+								
+                            <div class="col-md-6">
+                                <img src="../../static/images/test.jpg"
+                                     th:src="'/recipe/'+${recipe.getId()+'/recipeimage/'}"
+                                     width="200" height="200">
+                            </div>
 							</div>
 							<div class="row">
 								<div class="col-md-3">
@@ -91,11 +100,12 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h1 class="panel-title">Ingredients</h1>
-							
+							<th:block th:if="*{id}">
                             <div class="col-md-1 button-block-float-right">
                                 <a class="btn btn-default" href="#"
                                     th:href="@{'/recipe/'+*{id}+'/ingredients/'}" role="button">View</a>
                             </div>
+                            </th:block>
 						</div>
 						<div class="panel-body">
 							<div class="row">

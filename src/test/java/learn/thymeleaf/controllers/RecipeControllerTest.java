@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import learn.thymeleaf.commands.RecipeCommand;
 import learn.thymeleaf.domain.Recipe;
+import learn.thymeleaf.exceptions.NotFoundException;
 import learn.thymeleaf.services.RecipeService;
 
 /**
@@ -54,6 +55,25 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/1/show/")).andExpect(status().isOk()).andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
+    }
+
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show/"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("page404"));
+    }
+    @Test
+    public void testIdBadFormat() throws Exception {
+
+        when(recipeService.findById(any())).thenThrow(NumberFormatException.class);
+
+        mockMvc.perform(get("/recipe/1jjj/show/"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("page404"));
     }
 
     @Test

@@ -1,20 +1,16 @@
 package learn.thymeleaf.services;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author stefan
  *
  */
-public class ImageService {
+@Service
+public interface ImageService {
 
-    /**
-     * @param valueOf
-     * @param file
-     */
-    public void saveImageFile(Long valueOf, MultipartFile file) {
-        // TODO Auto-generated method stub
-        
-    }
+    void saveImageFile(Long recipeId, MultipartFile file);
+
 
 }
