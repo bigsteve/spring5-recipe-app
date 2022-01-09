@@ -42,7 +42,9 @@ public class RecipeControllerTest {
         MockitoAnnotations.initMocks(this);
 
         controller = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test
@@ -62,10 +64,11 @@ public class RecipeControllerTest {
 
         when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
 
-        mockMvc.perform(get("/recipe/1/show/"))
+        mockMvc.perform(get("/recipe/1111/show/"))
                 .andExpect(status().isNotFound())
                 .andExpect(view().name("page404"));
     }
+    
     @Test
     public void testIdBadFormat() throws Exception {
 
@@ -73,7 +76,7 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/1jjj/show/"))
                 .andExpect(status().isBadRequest())
-                .andExpect(view().name("page404"));
+                .andExpect(view().name("page400"));
     }
 
     @Test
@@ -90,9 +93,17 @@ public class RecipeControllerTest {
         command.setId(2L);
 
         when(recipeService.saveRecipeCommand(any())).thenReturn(command);
-
-        mockMvc.perform(post("/recipe/").contentType(MediaType.APPLICATION_FORM_URLENCODED).param("id", "2")
-                .param("description", "some string")).andExpect(status().is3xxRedirection())
+        mockMvc.perform(post("/recipe/")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("id", "")
+                .param("description", "some string")
+                .param("directions", "some directions")
+                .param("servings", "2")
+                .param("prepTime", "3")
+                .param("cookTime", "3")
+                .param("url", "http://www.example.com")
+        )
+                .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/show/"));
     }
 

@@ -102,7 +102,6 @@ public class ImageControllerTest {
 
         when(recipeService.findCommandById(anyLong())).thenReturn(command);
 
-        //when
         MockHttpServletResponse response = mockMvc.perform(get("/recipe/1/recipeimage/"))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
@@ -110,6 +109,18 @@ public class ImageControllerTest {
         byte[] reponseBytes = response.getContentAsByteArray();
 
         assertEquals(s.getBytes().length, reponseBytes.length);
+    }
+
+    @Test
+    public void getImageNumberFormatException() throws Exception {
+        
+        when(recipeService.findCommandById(any())).thenThrow(NumberFormatException.class);
+
+//        mockMvc.perform(get("/recipe/bla/image/"))
+//                .andExpect(status().isBadRequest())
+//                .andExpect(view().name("page400"));
+//
+//        verify(imageService, times(1)).saveImageFile(anyLong(), any());
     }
 
 }
